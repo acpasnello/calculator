@@ -1,0 +1,48 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+}
+
+h1 {
+    width: 100%;
+}
+
+.button {
+    flex-basis: 19%;
+    flex-grow: 1;
+    height: 50px;
+    border: 1px solid black;
+    text-align: center;
+    background-color: white;
+    color: #3d3d3d;
+    font-size: 24px;
+}
+
+.operator {
+    background-color: rgb(239, 239, 239);
+    color: #3d3d3d;
+}
+
+.zero {
+    flex-basis: 57%;
+    flex-grow: 0;
+}
+
+.equals {
+    flex-basis: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+    .container {
+        max-width: 90%;
+    }
+}
