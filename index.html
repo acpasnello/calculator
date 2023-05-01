@@ -11,34 +11,24 @@
 <body>
     <div class="container">
         <h1>Calculator</h1>
-        <div><span class="display"></span></div>
-        <div class="row">
-            <button class="button">1</button>
-            <button class="button">2</button>
-            <button class="button">3</button>
-            <button class="button operator">+</button>
-        </div>
-        <div class="row">
-            <button class="button">4</button>
-            <button class="button">5</button>
-            <button class="button">6</button>
-            <button class="button operator">-</button>
-        </div>
-        <div class="row">
-            <button class="button">7</button>
-            <button class="button">8</button>
-            <button class="button">9</button>
-            <button class="button operator">*</button>
-        </div>
-        <div class="row">
-            <button class="button zero">0</button>
-            <button class="button operator">&#247;</button>
-        </div>
-        <div class="row">
-            <button class="button">Clear</button>
-            <button class="button operator">.</button>
-        </div>
-        <button class="button operator">=</button>
+        <div id="display"><div id="equation"></div><div id="result"></div></div>
+        <button class="col1 operand">1</button>
+        <button class="col2 operand">2</button>
+        <button class="col3 operand">3</button>
+        <button class="col4 operator">+</button>
+        <button class="col1 operand">4</button>
+        <button class="col2 operand">5</button>
+        <button class="col3 operand">6</button>
+        <button class="col4 operator">-</button>
+        <button class="col1 operand">7</button>
+        <button class="col2 operand">8</button>
+        <button class="col3 operand">9</button>
+        <button class="col4 operator">*</button>
+        <button class="button zero operand">0</button>
+        <button class="button operator">&#247;</button>
+        <button class="button" id="clear">Clear</button>
+        <button class="button" id="point">.</button>
+        <button class="button" id="equals">=</button>
     </div>
 </body>
 </html>
