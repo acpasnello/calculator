@@ -43,6 +43,10 @@ function divide(x, y) {return x / y;}
 
 // Function to update display
 function constructEquation() {
+    if (operator == "÷" && secondNum == "0") {
+        resultDisplay.textContent = "No no no you naughty. No dividing by 0!";
+        return false;
+    }
     resultDisplay.textContent = "";
     let firstDisplay = (firstNum == null) ? "" : firstNum;
     let operatorDisplay = (operator == null) ? "" : operator;
