@@ -91,9 +91,15 @@ function processDecimal() {
         }
     } else {
         // If operator, check secondNum for decimal
-        secondNum += "."
-        point.removeEventListener('click', processDecimal);
-        constructEquation();
+        if (!secondNum) {
+            secondNum = ".";
+            point.removeEventListener('click', processDecimal);
+            constructEquation();
+        } else {
+            secondNum += "."
+            point.removeEventListener('click', processDecimal);
+            constructEquation();
+        }
     }
 }
 
@@ -135,6 +141,10 @@ function processOperator(input) {
         constructEquation();
     } 
 }
+
+function processEquals() {
+    if (firstNum && operator && secondNum) {operate();}
+}
 // Operands
 let operands = document.querySelectorAll('.operand')
 operands.forEach(function(btn) {
@@ -169,5 +179,5 @@ backspace.addEventListener('click', processBackspace)
 
 // Equals
 submit.addEventListener('click', function() {
-    if (firstNum && operator && secondNum) {operate();}
+    processEquals();
 })
