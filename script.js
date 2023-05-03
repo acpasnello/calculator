@@ -6,6 +6,8 @@ let equationDisplay = document.querySelector('#equation')
 let submit = document.querySelector('#equals')
 let clear = document.querySelector('#clear')
 let resultDisplay = document.querySelector('#result')
+let point = document.querySelector('#point')
+let backspace = document.querySelector('#backspace')
 
 function operate() {
     let result;
@@ -28,12 +30,16 @@ function operate() {
     if (result % 1 != 0) {
         let temp = result - Math.floor(result)
         temp = temp.toString();
+        console.log(temp)
         if (temp.length > 9) {
             result = result.toFixed(9)
         }
     }
     constructEquation();
     resultDisplay.textContent = result;
+    firstNum = result;
+    secondNum = null;
+    operator = null;
     return result;
 }
 function add(x, y) {return x + y;}
@@ -71,6 +77,43 @@ function processDigit(input) {
     }
 }
 
+function processDecimal() {
+    // If no operator, check firstNum for decimal
+    if (!operator) {
+        if (!firstNum) {
+            firstNum = ".";
+            point.removeEventListener('click', processDecimal);
+            constructEquation();
+        } else {
+            firstNum += "."
+            point.removeEventListener('click', processDecimal);
+            constructEquation();
+        }
+    } else {
+        // If operator, check secondNum for decimal
+        secondNum += "."
+        point.removeEventListener('click', processDecimal);
+        constructEquation();
+    }
+}
+
+function processBackspace() {
+    if (!secondNum) {
+        if (!operator) {
+            if (firstNum.length > 1) {
+                firstNum = firstNum.slice(0, firstNum.length-1);
+            } else {
+                firstNum = null;
+            }
+        } else {
+            operator = null;
+        }
+    } else {
+        secondNum = secondNum.slice(0, secondNum.length-1)
+    }
+    constructEquation();
+}
+
 function processOperator(input) {
     if (secondNum) {
         let temp = input;
@@ -84,9 +127,11 @@ function processOperator(input) {
         return false;
     } else if (!operator) {
         operator = input;
+        point.addEventListener('click', processDecimal)
         constructEquation();
     } else if (operator && !secondNum) {
         operator = input;
+        point.addEventListener('click', processDecimal)
         constructEquation();
     } 
 }
@@ -106,6 +151,9 @@ operators.forEach(function(btn) {
     })
 })
 
+// Decimal
+point.addEventListener('click', processDecimal)
+
 // Clear Button
 clear.addEventListener('click', function() {
     equationDisplay.textContent = "";
@@ -113,7 +161,11 @@ clear.addEventListener('click', function() {
     secondNum = null;
     operator = null;
     constructEquation();
+    point.addEventListener('click', processDecimal)
 })
+
+// Backspace
+backspace.addEventListener('click', processBackspace)
 
 // Equals
 submit.addEventListener('click', function() {
